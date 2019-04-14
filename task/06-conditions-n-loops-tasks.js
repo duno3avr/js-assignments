@@ -30,7 +30,15 @@
  *
  */
 function getFizzBuzz(num) {
-    throw new Error('Not implemented');
+  if (num % 3 === 0 && num % 5 === 0) {
+    return 'FizzBuzz';
+  } else if (num % 3 === 0) {
+    return 'Fizz';
+  } else if (num % 5 === 0){
+    return 'Buzz';
+  } else {
+    return num;
+  }
 }
 
 
@@ -46,7 +54,11 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    throw new Error('Not implemented');
+  let factorial = 1;
+  for(let i = 1; i <= n; i++) {
+      factorial *= i
+  }
+  return factorial;
 }
 
 
@@ -63,7 +75,11 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-    throw new Error('Not implemented');
+  let sum = 0;
+  for (n1; n1 <= n2; n1++) {
+      sum += n1;
+  }
+  return sum;
 }
 
 
@@ -82,30 +98,30 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a,b,c) {
-    throw new Error('Not implemented');
+  return (a + b > c) && (a + c > b) && (b + c > a);
 }
 
 
 /**
  * Returns true, if two specified axis-aligned rectangles overlap, otherwise false.
- * Each rectangle representing by object 
+ * Each rectangle representing by object
  *  {
  *     top: 5,
  *     left: 5,
  *     width: 20,
  *     height: 10
  *  }
- * 
+ *
  *  (5;5)
- *     -------------  
- *     |           | 
+ *     -------------
+ *     |           |
  *     |           |  height = 10
- *     ------------- 
- *        width=20    
- * 
+ *     -------------
+ *        width=20
+ *
  * NOTE: Please use canvas coordinate space (https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#The_grid),
  * it differs from Cartesian coordinate system.
- * 
+ *
  * @param {object} rect1
  * @param {object} rect2
  * @return {bool}
@@ -113,33 +129,33 @@ function isTriangle(a,b,c) {
  * @example:
  *   { top: 0, left: 0, width: 10, height: 10 },
  *   { top: 5, left: 5, width: 20, height: 20 }    =>  true
- * 
+ *
  *   { top: 0, left: 0, width: 10, height: 10 },
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
- *  
+ *
  */
 function doRectanglesOverlap(rect1, rect2) {
-    throw new Error('Not implemented');
+  return (rect1.top+rect1.height)>rect2.top && (rect1.left+rect1.width)>rect2.left;
 }
 
 
 /**
  * Returns true, if point lies inside the circle, otherwise false.
- * Circle is an object of 
+ * Circle is an object of
  *  {
  *     center: {
- *       x: 5,       
+ *       x: 5,
  *       y: 5
- *     },        
+ *     },
  *     radius: 20
  *  }
- * 
- * Point is object of 
+ *
+ * Point is object of
  *  {
  *     x: 5,
  *     y: 5
  *  }
- * 
+ *
  * @param {object} circle
  * @param {object} point
  * @return {bool}
@@ -147,10 +163,10 @@ function doRectanglesOverlap(rect1, rect2) {
  * @example:
  *   { center: { x:0, y:0 }, radius:10 },  { x:0, y:0 }     => true
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
- *   
+ *
  */
 function isInsideCircle(circle, point) {
-    throw new Error('Not implemented');
+  return Math.hypot(point.x - circle.center.x, point.y - circle.center.y) < circle.radius;
 }
 
 
@@ -166,7 +182,7 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+  return str.split('').filter((item, i, arr) => arr.lastIndexOf(item) == arr.indexOf(item))[0];
 }
 
 
@@ -192,7 +208,7 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+  return (isStartIncluded ? "[" : "(" ) + (( a < b )? (a+', '+b):(b+', '+a)) + (isEndIncluded ? "]" : ")" );
 }
 
 
@@ -209,7 +225,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+  return str.split("").reverse().join("");
 }
 
 
@@ -226,7 +242,7 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+  return num.toString().split('').reverse().join('');
 }
 
 
@@ -251,7 +267,19 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+  var sum = 0;
+  var num = ccn.toString();
+  var length = num.length;
+  var temp;
+  for(var i = 1; i <= length; i++){
+    temp = Number(num[length - i]);
+    if (i % 2 === 0)
+        temp *= 2;
+    if (temp > 9)
+       temp -= 9;
+    sum += temp;
+  }
+  return sum % 10 === 0;
 }
 
 
@@ -270,7 +298,20 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+  var sum = 0;
+  while (num > 0){
+    sum += num % 10;
+    num = Math.floor(num / 10);
+  }
+  if (sum > 9){
+    num = sum;
+    sum = 0;
+    while (num > 0){
+      sum += num % 10;
+      num = Math.floor(num / 10);
+    }
+  }
+  return sum;
 }
 
 
@@ -293,7 +334,7 @@ function getDigitalRoot(num) {
  *   '[[][][[]]]' => true
  *   '[[][]][' => false
  *   '{)' = false
- *   '{[(<{[]}>)]}' = true 
+ *   '{[(<{[]}>)]}' = true
  */
 function isBracketsBalanced(str) {
     throw new Error('Not implemented');
@@ -332,7 +373,24 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+  let seconds = (endDate - startDate - 0.001) / 1000
+  let minutes = seconds / 60;
+  let hours = minutes / 60;
+  let days = hours / 24;
+  let months = days / 30;
+  let years = months / 12;
+
+  if (days > 545) return Math.round(years) + ' years ago';
+  if (days > 345) return 'a year ago';
+  if (days > 45) return Math.round(months) + ' months ago';
+  if (days > 25) return 'a month ago';
+  if (hours > 36) return Math.round(days) + ' days ago';
+  if (hours > 22) return 'a day ago';
+  if (minutes > 90) return Math.round(hours) + ' hours ago';
+  if (minutes > 45) return 'an hour ago';
+  if (seconds > 90) return Math.round(minutes) + ' minutes ago';
+  if (seconds > 45) return 'a minute ago';
+  return 'a few seconds ago';
 }
 
 
@@ -356,7 +414,13 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+  let resArr=[];
+  do{
+    resArr.push(num%n);
+    num = Math.floor(num/n);
+  }while(num>=n);
+  resArr.push(num);
+  return resArr.reverse().join('');
 }
 
 
